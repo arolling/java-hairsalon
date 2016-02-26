@@ -56,19 +56,32 @@ public class AppTest extends FluentTest {
     submit("#add-client");
     assertThat(pageSource()).contains("Britney Spears");
   }
+
   @Test
   public void deleteStylist() {
     Stylist monica = new Stylist("Monica Sellers");
     Stylist sabrina = new Stylist("Sabrina Childs");
     monica.save();
     sabrina.save();
-    Client britney = new Client("Britney", "Spears", monica.getId());
-    britney.save();
     goTo("http://localhost:4567/stylist/" + monica.getId());
     click("a", withText("Delete"));
+    assertThat(pageSource()).contains("Monica Sellers has been deleted.");
+  }
 
-    assertThat(pageSource()).doesNotContain("Monica Sellers");
-    assertThat(pageSource()).contains("Sabrina");
+  @Test
+  public void deleteStylistWithClients() {
+    Stylist monica = new Stylist("Monica Sellers");
+    Stylist sabrina = new Stylist("Sabrina Childs");
+    monica.save();
+    sabrina.save();
+    Client britney = new Client("Britney", "Spears", monica.getId());
+    britney.save();
+    Client elizabeth = new Client("Elizabeth", "Taylor", sabrina.getId());
+    elizabeth.save();
+    goTo("http://localhost:4567/stylist/" + monica.getId() + "/delete");
+    click("option", withText("Sabrina Childs"));
+    submit("#reassign");
+    assertThat(pageSource()).contains("Britney Spears");
   }
 
   @Test

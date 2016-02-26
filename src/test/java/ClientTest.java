@@ -89,4 +89,16 @@ public class ClientTest {
     assertEquals(monica.getName(), britney.getStylistName());
   }
 
+  @Test
+  public void getStrandedClients_returnsListOfClientsForDeletedStylist() {
+    Stylist monica = new Stylist("Monica Sellers");
+    monica.save();
+    Client britney = new Client("Britney", "Spears", monica.getId());
+    britney.save();
+    Client elizabeth = new Client("Elizabeth", "Taylor", monica.getId());
+    elizabeth.save();
+    monica.delete();
+    assertTrue(Client.getStrandedClients(monica.getId()).contains(britney));
+  }
+
 }

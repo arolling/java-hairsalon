@@ -121,4 +121,13 @@ public class Client {
         .executeAndFetchFirst(String.class);
     }
   }
+
+  public static List<Client> getStrandedClients(int stylistId) {
+    String sql = "SELECT * FROM clients WHERE stylist_id = :id";
+    try (Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+        .addParameter("id", stylistId)
+        .executeAndFetch(Client.class);
+    }
+  }
 }

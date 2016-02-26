@@ -4,5 +4,51 @@
 #end
 
 #if ($stylist)
-
+  <h3>$stylist.getName() has been deleted.</h3>
 #end
+
+
+#if($strandedClients)
+  <h4>Please reassign or remove these clients:</h4>
+  <form class="form-horizontal" action="/stylist/$stylist.getId()/delete" method="post">
+    #foreach($oldclient in $strandedClients)
+    <div class="form-group">
+      <label for="reassign-stylist" class="col-sm-2 control-label">$oldclient.getFirst() $oldclient.getLast()</label>
+      <input type="hidden" name="clientId" value="$oldclient.getId()">
+      <div class="col-sm-10">
+        <select type="text" name="reassign-stylist" class="form-control">
+          <option value="0">Remove Client</option>
+          #foreach($stylist in $allStylists)
+            <option value="$stylist.getId()">$stylist.getName()</option>
+          #end
+        </select>
+      </div>
+    </div>
+    #end
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" id="reassign" class="btn btn-primary">Reassign All</button>
+      </div>
+    </div>
+  </form>
+#end
+
+#if($fixedClients)
+  <h3>Clients Reassigned:</h3>
+  <dl>
+    #foreach ($client in $fixedClients)
+      <dt><a href="/client/$client.getId()" class="list-group-item">$client.getFirst() $client.getLast()</a></dt>
+      <dd>$client.getStylistName()</dd>
+    #end
+  </dl>
+#end
+
+#if($deletedClients)
+  <h3>Clients Deleted:</h3>
+  <dl>
+    #foreach ($client in $deletedClients)
+      <dt>$client.getFirst() $client.getLast()</dt>
+    #end
+  </dl>
+#end
+<h4><a href="/">Return to Main Page</a></h4>

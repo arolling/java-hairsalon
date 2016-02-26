@@ -61,9 +61,36 @@ public class App {
       int id = Integer.parseInt(request.params("id"));
       Stylist thisStylist = Stylist.find(id);
       thisStylist.delete();
-
+      model.put("stylist", thisStylist);
       model.put("allStylists", Stylist.all());
-      model.put("template", "templates/index.vtl");
+      model.put("strandedClients", Client.getStrandedClients(id));
+      model.put("template", "templates/delete.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/stylist/:id/delete", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      ArrayList<Client> fixedClients = new ArrayList<Client>();
+      ArrayList<Client> deletedClients = new ArrayList<Client>();
+      String[] strandedClients = request.queryParamsValues("clientId");
+      String[] newStylists = request.queryParamsValues("reassign-stylist");
+      //desperately hoping these come in in the same order
+      for (int i = 0; i < strandedClients.length; i++) {
+        Client fix = Client.find(Integer.parseInt(strandedClients[i]));
+        int stylist = Integer.parseInt(newStylists[i]);
+        if (stylist == 0) {
+          fix.delete();
+          deletedClients.add(fix);
+        } else {
+          fix.updateStylist(stylist);
+          fixedClients.add(fix);
+        }
+      }
+
+      model.put("fixedClients", fixedClients);
+      model.put("deletedClients", deletedClients);
+      model.put("template", "templates/delete.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
