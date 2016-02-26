@@ -1,14 +1,16 @@
 <div class="row">
   <div class="col-sm-8">
     <h2>Manage Stylists</h2>
-    #if($allStylists.size() != 0)
-      #foreach($stylist in $allStylists)
-        <h4><a href="/stylist/$stylist.getId()">$stylist.getName()</a></h4>
-        <hr />
+    <div class="well">
+      #if($allStylists.size() != 0)
+        #foreach($stylist in $allStylists)
+          <h4><a href="/stylist/$stylist.getId()">$stylist.getName()</a></h4>
+          <hr />
+        #end
+      #else
+        <h4>No Current Stylists</h4>
       #end
-    #else
-      <h4>No Current Stylists</h4>
-    #end
+    </div>
   </div>
   <div class="col-sm-4">
     <h2>Add a Stylist</h2>

@@ -15,18 +15,26 @@
           <input type="text" name="new-client-last" id="new-client-last" class="form-control" required>
         </div>
       </div>
-      <button type="submit" id="add-client" class="btn btn-default">Add</button>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" id="add-client" class="btn btn-default">Add</button>
+        </div>
+      </div>
     </form>
+    <hr />
+    <h3>Edit Stylist</h3>
   </div>
   <div class="col-md-4">
     <h2>Manage Clients</h2>
-    #if($stylist.getClients().size() != 0)
-      #foreach($client in $stylist.getClients())
-        <h4><a href="/client/$client.getId()">$client.getFirst() $client.getLast()</a></h4>
-        <hr />
+    <br>
+    <div class="list-group">
+      #if($stylist.getClients().size() != 0)
+        #foreach($client in $stylist.getClients())
+          <h4><a href="/client/$client.getId()" class="list-group-item">$client.getFirst() $client.getLast()</a></h4>
+        #end
+      #else
+        <h4 class="list-group-item">No Current Clients</h4>
       #end
-    #else
-      <h4>No Current Clients</h4>
-    #end
+    </div>
   </div>
 </div>
