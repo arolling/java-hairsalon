@@ -26,7 +26,6 @@ public class Stylist {
       return this.getName().equals(newStylist.getName()) &&
         this.getId() == newStylist.getId();
     }
-
   }
 
   // Database interaction below
