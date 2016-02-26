@@ -57,4 +57,13 @@ public class StylistTest {
     assertTrue(Stylist.all().contains(sabrina));
   }
 
+  @Test
+  public void find_findsSpecificStylistInDatabaseById_true() {
+    Stylist monica = new Stylist("Monica Sellers");
+    Stylist sabrina = new Stylist("Sabrina Childs");
+    monica.save();
+    sabrina.save();
+    assertEquals(Stylist.find(monica.getId()), monica);
+  }
+
 }
