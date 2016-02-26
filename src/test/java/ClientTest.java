@@ -57,6 +57,27 @@ public class ClientTest {
     assertEquals("Spears", savedClient.getLast());
     assertEquals(monica.getId(), britney.getStylistId());
     assertEquals(monica.getId(), savedClient.getStylistId());
+    assertTrue(savedClient.equals(britney));
+  }
+
+  @Test
+  public void delete_deletesSpecificClientFromDB_false() {
+    Client britney = new Client("Britney", "Spears", 3);
+    britney.save();
+    Client elizabeth = new Client("Elizabeth", "Taylor", 2);
+    elizabeth.save();
+    britney.delete();
+    assertFalse(Client.all().contains(britney));
+    assertTrue(Client.all().contains(elizabeth));
+  }
+
+  @Test
+  public void find_findsSpecificClientInDatabaseById_true() {
+    Client britney = new Client("Britney", "Spears", 3);
+    britney.save();
+    Client elizabeth = new Client("Elizabeth", "Taylor", 2);
+    elizabeth.save();
+    assertEquals(Client.find(elizabeth.getId()), elizabeth);
   }
 
 }

@@ -94,4 +94,22 @@ public class Client {
         .executeUpdate();
     }
   }
+
+  public void delete() {
+    String sql = "DELETE FROM clients WHERE id = :id";
+    try(Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public static Client find(int id){
+    String sql = "SELECT * FROM clients WHERE id = :id";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Client.class);
+    }
+  }
 }
