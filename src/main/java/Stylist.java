@@ -9,6 +9,21 @@ public class Stylist {
     stylist_name = name;
   }
 
+  public String getName() {
+    return stylist_name;
+  }
+
+  @Override
+  public boolean equals(Object otherStylist) {
+    if (!(otherStylist instanceof Stylist)) {
+      return false;
+    } else {
+      Stylist newStylist = (Stylist) otherStylist;
+      return this.getName().equals(newStylist.getName());
+    }
+
+  }
+
   // Database interaction below
   public static List<Stylist> all() {
     String sql = "SELECT * FROM stylists";
@@ -17,4 +32,14 @@ public class Stylist {
         .executeAndFetch(Stylist.class);
     }
   }
+
+  public void save() {
+    String sql = "INSERT INTO stylists (stylist_name) VALUES (:name)";
+    try (Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+        .addParameter("name", stylist_name)
+        .executeUpdate();
+    }
+  }
+
 }

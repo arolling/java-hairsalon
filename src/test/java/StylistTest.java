@@ -21,4 +21,12 @@ public class StylistTest {
     assertEquals(0, Stylist.all().size());
   }
 
+  @Test
+  public void save_returnsTrueIfNameIsSame_true() {
+    Stylist monica = new Stylist("Monica Sellers");
+    monica.save();
+    assertTrue(Stylist.all().get(0).equals(monica));
+  }
+
+
 }
