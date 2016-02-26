@@ -76,7 +76,24 @@ public class AppTest extends FluentTest {
     sabrina.save();
     goTo("http://localhost:4567/stylist/" + sabrina.getId());
     fill("#editName").with("Sabrina Childs");
-    submit("#edit");    
+    submit("#edit");
     assertThat(pageSource()).contains("Sabrina Childs");
+  }
+
+  @Test
+  public void editClient() {
+    Stylist monica = new Stylist("Monica Sellers");
+    Stylist sabrina = new Stylist("Sabrina Childs");
+    monica.save();
+    sabrina.save();
+    Client britney = new Client("Britney", "Spears", monica.getId());
+    britney.save();
+    Client elizabeth = new Client("Elizabeth", "Taylor", sabrina.getId());
+    elizabeth.save();
+    goTo("http://localhost:4567/stylist/" + sabrina.getId());
+    click("a", withText("Elizabeth Taylor"));
+    click("option", withText("Monica Sellers"));
+    submit("#editClient");
+    assertThat(pageSource()).contains("Client of Monica Sellers");
   }
 }

@@ -38,7 +38,7 @@
     <div class="list-group">
       #if($stylist.getClients().size() != 0)
         #foreach($client in $stylist.getClients())
-          <h4><a href="/client/$client.getId()" class="list-group-item">$client.getFirst() $client.getLast()</a></h4>
+          <a href="/client/$client.getId()" class="list-group-item">$client.getFirst() $client.getLast()</a>
         #end
       #else
         <h4 class="list-group-item">No Current Clients</h4>
