@@ -98,15 +98,13 @@ public class App {
         thisClient.updateStylist(newStylist);
       }
       String newFirst = request.queryParams("edit-client-first");
-      if(newFirst != null){
+      if(newFirst.length() != 0){
         thisClient.updateFirst(newFirst);
       }
       String newLast = request.queryParams("edit-client-last");
-      if(newLast != null){
+      if(newLast.length() != 0){
         thisClient.updateLast(newLast);
       }
-
-
       model.put("client", thisClient);
       model.put("allStylists", Stylist.all());
       model.put("template", "templates/client.vtl");

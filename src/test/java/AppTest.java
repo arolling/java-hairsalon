@@ -95,6 +95,7 @@ public class AppTest extends FluentTest {
     click("option", withText("Monica Sellers"));
     submit("#editClient");
     assertThat(pageSource()).contains("Client of Monica Sellers");
+    assertThat(pageSource()).contains("Elizabeth Taylor");
   }
   @Test
   public void editClientName() {
