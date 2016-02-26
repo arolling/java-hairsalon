@@ -10,6 +10,10 @@ public class StylistTest {
 
   // UNIT TESTING
 
-
+  @Test
+  public void stylist_instantiatesCorrectly_true() {
+    Stylist monica = new Stylist("Monica Sellers");
+    assertEquals(true, monica instanceof Stylist);
+  }
 
 }

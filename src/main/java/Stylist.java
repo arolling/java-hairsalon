@@ -7,4 +7,7 @@ public class Stylist {
   public Stylist(String name) {
     stylist_name = name;
   }
+
+  // Database interaction below
+  
 }
