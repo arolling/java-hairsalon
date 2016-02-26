@@ -16,4 +16,9 @@ public class StylistTest {
     assertEquals(true, monica instanceof Stylist);
   }
 
+  @Test
+  public void all_returnsEmptyAtFirstFromDatabase_true() {
+    assertEquals(0, Stylist.all().size());
+  }
+
 }
