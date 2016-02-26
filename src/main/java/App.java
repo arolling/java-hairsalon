@@ -93,7 +93,19 @@ public class App {
       HashMap<String, Object> model = new HashMap<String, Object>();
       int id = Integer.parseInt(request.params("id"));
       Client thisClient = Client.find(id);
-      thisClient.updateStylist(Integer.parseInt(request.queryParams("edit-stylist")));
+      int newStylist = Integer.parseInt(request.queryParams("edit-stylist"));
+      if (newStylist != 0) {
+        thisClient.updateStylist(newStylist);
+      }
+      String newFirst = request.queryParams("edit-client-first");
+      if(newFirst != null){
+        thisClient.updateFirst(newFirst);
+      }
+      String newLast = request.queryParams("edit-client-last");
+      if(newLast != null){
+        thisClient.updateLast(newLast);
+      }
+
 
       model.put("client", thisClient);
       model.put("allStylists", Stylist.all());

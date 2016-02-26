@@ -81,7 +81,7 @@ public class AppTest extends FluentTest {
   }
 
   @Test
-  public void editClient() {
+  public void editClientStylist() {
     Stylist monica = new Stylist("Monica Sellers");
     Stylist sabrina = new Stylist("Sabrina Childs");
     monica.save();
@@ -95,5 +95,17 @@ public class AppTest extends FluentTest {
     click("option", withText("Monica Sellers"));
     submit("#editClient");
     assertThat(pageSource()).contains("Client of Monica Sellers");
+  }
+  @Test
+  public void editClientName() {
+    Stylist monica = new Stylist("Monica Sellers");
+    monica.save();
+    Client britney = new Client("Brittany", "Speeres", monica.getId());
+    britney.save();
+    goTo("http://localhost:4567/client/" + britney.getId());
+    fill("#edit-client-first").with("Britney");
+    fill("#edit-client-last").with("Spears");
+    submit("#editClient");
+    assertThat(pageSource()).contains("Britney Spears");
   }
 }
