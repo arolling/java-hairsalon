@@ -1,8 +1,8 @@
-# _{Application Name}_
+# Epicodus Hair Salon
 
-#### _{Brief description of application}, {Date of current version}_
+#### _A hair salon management app, February 26, 2016_
 
-#### By _**{List of contributors}**_
+#### By _**Abigail Rolling**_
 
 ## Description
 
@@ -10,13 +10,30 @@ _{This is a detailed description of your application. Its purpose and usage.  Gi
 
 ## Setup/Installation Requirements
 
-* _This is a great place_
-* _to list setup instructions_
-* _in a simple_
-* _easy-to-understand_
-* _format_
+Clone this repository:
+```
+$ cd ~/Desktop
+$ git clone https://github.com/arolling/java-hairsalon.git
+$ cd java-hairsalon
+```
 
-_{Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this app depends on?}_
+Open terminal and run Postgres:
+```
+$ postgres
+```
+
+Open a new tab in terminal and create the `hair_salon` database:
+```
+$ psql
+$ CREATE DATABASE hair_salon;
+$ psql hair_salon < hair_salon.sql
+```
+
+Navigate back to the directory where this repository has been cloned and run gradle:
+```
+$ gradle run
+```
+
 
 ## Known Bugs
 
@@ -24,11 +41,17 @@ _{Are there issues that have not yet been resolved that you want to let users kn
 
 ## Support and contact details
 
-_{Let people know what to do if they run into any issues or have questions, ideas or concerns.  Encourage them to contact you or make a contribution to the code.}_
+[E-mail me](mailto:arolling@gmail.com) with any comments or concerns.
 
 ## Technologies Used
 
-_{Tell me about the languages and tools you used to create this app. Assume that I know you probably used HTML and CSS. If you did something really cool using only HTML, point that out.}_
+* Java
+* junit
+* Gradle
+* Spark
+* fluentlenium
+* PostgreSql 
+* Bootstrap
 
 ### License
 
