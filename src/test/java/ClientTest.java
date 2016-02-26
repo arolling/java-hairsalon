@@ -80,4 +80,13 @@ public class ClientTest {
     assertEquals(Client.find(elizabeth.getId()), elizabeth);
   }
 
+  @Test
+  public void getStylistName_returnsStylistNameForSpecificClient_monica() {
+    Stylist monica = new Stylist("Monica Sellers");
+    monica.save();
+    Client britney = new Client("Britney", "Spears", monica.getId());
+    britney.save();
+    assertEquals(monica.getName(), britney.getStylistName());
+  }
+
 }

@@ -66,4 +66,21 @@ public class StylistTest {
     assertEquals(Stylist.find(monica.getId()), monica);
   }
 
+  @Test
+  public void getClients_returnsAllClientsForStylist_2() {
+    Stylist monica = new Stylist("Monica Sellers");
+    Stylist sabrina = new Stylist("Sabrina Childs");
+    monica.save();
+    sabrina.save();
+    Client britney = new Client("Britney", "Spears", monica.getId());
+    britney.save();
+    Client elizabeth = new Client("Elizabeth", "Taylor", sabrina.getId());
+    elizabeth.save();
+    Client christina = new Client("Christina", "Aguilera", monica.getId());
+    christina.save();
+    assertEquals(2, monica.getClients().size());
+    assertTrue(sabrina.getClients().contains(elizabeth));
+    assertFalse(monica.getClients().contains(elizabeth));
+  }
+
 }

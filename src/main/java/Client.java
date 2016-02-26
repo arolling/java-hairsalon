@@ -112,4 +112,13 @@ public class Client {
         .executeAndFetchFirst(Client.class);
     }
   }
+
+  public String getStylistName() {
+    String sql = "SELECT stylist_name FROM stylists WHERE id = :stylist_id";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+        .addParameter("stylist_id", stylist_id)
+        .executeAndFetchFirst(String.class);
+    }
+  }
 }
