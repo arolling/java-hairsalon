@@ -23,11 +23,23 @@ public class AppTest extends FluentTest {
   @ClassRule
   public static ServerRule server = new ServerRule();
 
+  @Rule
+  public DatabaseRule database = new DatabaseRule();
 
   //Integration testing
   @Test
   public void rootTest() {
     goTo("http://localhost:4567/");
     assertThat(pageSource()).contains("Hair Salon");
+    assertThat(pageSource()).contains("No Current Stylists");
+  }
+
+  @Test
+  public void addStylist() {
+    goTo("http://localhost:4567/");
+    fill("#new-stylist").with("Marjorie Strong");
+    submit("#add-stylist");
+    assertThat(pageSource()).contains("Marjorie");
+    assertThat(pageSource()).doesNotContain("No Current Stylists");
   }
 }

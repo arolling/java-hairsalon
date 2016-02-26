@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-8">
+    <h2>Manage Stylists</h2>
+    #if($allStylists.size() != 0)
+      #foreach($stylist in $allStylists)
+        <h4>$stylist.getName()</h4>
+        <hr />
+      #end
+    #else
+      <h4>No Current Stylists</h4>
+    #end
+  </div>
+  <div class="col-sm-4">
+    <h2>Add a Stylist</h2>
+    <form class="form-inline" action="/" method="post">
+      <div class="form-group">
+        <label for="new-stylist">Name</label>
+        <input type="text" name="new-stylist" id="new-stylist" class="form-control" required>
+      </div>
+      <button type="submit" id="add-stylist" class="btn btn-default">Add</button>
+    </form>
+  </div>
+</div>

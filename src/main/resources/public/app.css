@@ -1,3 +1,7 @@
 .footer {
   font-size: 200%;
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  background-color: #f5f5f5;
 }
