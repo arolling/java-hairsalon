@@ -29,5 +29,34 @@ public class ClientTest {
     assertTrue(Client.all().get(0).equals(britney));
   }
 
+  @Test
+  public void save_addsIdToClientObjectLocally_true() {
+    Stylist monica = new Stylist("Monica Sellers");
+    monica.save();
+    Client britney = new Client("Britney", "Spears", monica.getId());
+    britney.save();
+    Client savedClient = Client.all().get(0);
+    assertEquals(savedClient.getId(), britney.getId());
+  }
+
+  @Test
+  public void updaters_updatesNameOfClient_BritneySpears() {
+    Stylist sabrina = new Stylist("Sabrina");
+    sabrina.save();
+    Stylist monica = new Stylist("Monica Sellers");
+    monica.save();
+    Client britney = new Client("Brittany", "Speeres", sabrina.getId());
+    britney.save();
+    britney.updateFirst("Britney");
+    britney.updateLast("Spears");
+    britney.updateStylist(monica.getId());
+    Client savedClient = Client.all().get(0);
+    assertEquals("Britney", britney.getFirst());
+    assertEquals("Britney", savedClient.getFirst());
+    assertEquals("Spears", britney.getLast());
+    assertEquals("Spears", savedClient.getLast());
+    assertEquals(monica.getId(), britney.getStylistId());
+    assertEquals(monica.getId(), savedClient.getStylistId());
+  }
 
 }

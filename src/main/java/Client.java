@@ -61,4 +61,37 @@ public class Client {
         .getKey();
     }
   }
+
+  public void updateFirst(String newFirst) {
+    this.first_name = newFirst;
+    String sql = "UPDATE clients SET first_name = :newFirst WHERE id = :id";
+    try (Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+        .addParameter("newFirst", newFirst)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public void updateLast(String newLast) {
+    this.last_name = newLast;
+    String sql = "UPDATE clients SET last_name = :newLast WHERE id = :id";
+    try (Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+        .addParameter("newLast", newLast)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
+  public void updateStylist(int newStylist) {
+    this.stylist_id = newStylist;
+    String sql = "UPDATE clients SET stylist_id = :newStylist WHERE id = :id";
+    try (Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+        .addParameter("newStylist", newStylist)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
 }
