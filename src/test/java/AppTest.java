@@ -42,4 +42,18 @@ public class AppTest extends FluentTest {
     assertThat(pageSource()).contains("Marjorie");
     assertThat(pageSource()).doesNotContain("No Current Stylists");
   }
+
+  @Test
+  public void addClientToStylist() {
+    Stylist monica = new Stylist("Monica Sellers");
+    Stylist sabrina = new Stylist("Sabrina Childs");
+    monica.save();
+    sabrina.save();
+    goTo("http://localhost:4567/");
+    click("a", withText("Monica Sellers"));
+    fill("#new-client-first").with("Britney");
+    fill("#new-client-last").with("Spears");
+    submit("#add-client");
+    assertThat(pageSource()).contains("Britney Spears");
+  }
 }

@@ -3,7 +3,7 @@
     <h2>Manage Stylists</h2>
     #if($allStylists.size() != 0)
       #foreach($stylist in $allStylists)
-        <h4>$stylist.getName()</h4>
+        <h4><a href="/stylist/$stylist.getId()">$stylist.getName()</a></h4>
         <hr />
       #end
     #else
