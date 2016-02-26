@@ -23,8 +23,12 @@
     </form>
     <hr />
     <h3>Edit Stylist</h3>
-    <form class="form-inline" action="stylist/:id/edit" method="post">
-
+    <form class="form-inline" action="/stylist/$stylist.getId()/edit" method="post">
+      <div class="form-group">
+        <label for="editName">Change Name</label>
+        <input type="text" name="editName" id="editName" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-default" id="edit">Edit</button>
     </form>
     <a type="button" href="/stylist/$stylist.getId()/delete" id="delete-stylist" class="btn btn-danger">Delete</a>
   </div>

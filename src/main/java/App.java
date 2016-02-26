@@ -66,5 +66,16 @@ public class App {
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    post("/stylist/:id/edit", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      Stylist thisStylist = Stylist.find(id);
+      thisStylist.update(request.queryParams("editName"));
+      model.put("stylist", thisStylist);
+      model.put("allStylists", Stylist.all());
+      model.put("template", "templates/stylist.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }
