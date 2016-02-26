@@ -62,8 +62,11 @@ public class AppTest extends FluentTest {
     Stylist sabrina = new Stylist("Sabrina Childs");
     monica.save();
     sabrina.save();
+    Client britney = new Client("Britney", "Spears", monica.getId());
+    britney.save();
     goTo("http://localhost:4567/stylist/" + monica.getId());
     click("a", withText("Delete"));
+
     assertThat(pageSource()).doesNotContain("Monica Sellers");
     assertThat(pageSource()).contains("Sabrina");
   }
@@ -97,6 +100,7 @@ public class AppTest extends FluentTest {
     assertThat(pageSource()).contains("Client of Monica Sellers");
     assertThat(pageSource()).contains("Elizabeth Taylor");
   }
+
   @Test
   public void editClientName() {
     Stylist monica = new Stylist("Monica Sellers");
@@ -108,5 +112,17 @@ public class AppTest extends FluentTest {
     fill("#edit-client-last").with("Spears");
     submit("#editClient");
     assertThat(pageSource()).contains("Britney Spears");
+  }
+
+  @Test
+  public void deleteClient() {
+    Stylist monica = new Stylist("Monica Sellers");
+    monica.save();
+    Client britney = new Client("Britney", "Spears", monica.getId());
+    britney.save();
+    goTo("http://localhost:4567/client/" + britney.getId());
+    click("a", withText("Delete"));
+    click("a", withText("Return to Monica Sellers"));
+    assertThat(pageSource()).doesNotContain("Britney Spears");
   }
 }
