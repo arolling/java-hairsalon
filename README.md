@@ -6,7 +6,7 @@
 
 ## Description
 
-_{This is a detailed description of your application. Its purpose and usage.  Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }_
+This website would allow a salon owner to manage a database of stylists and clients, allowing additions, edits, and deletions. When a stylist with active clients is deleted, the user is prompted to reassign or delete those clients.
 
 ## Setup/Installation Requirements
 
@@ -34,11 +34,6 @@ Navigate back to the directory where this repository has been cloned and run gra
 $ gradle run
 ```
 
-
-## Known Bugs
-
-_{Are there issues that have not yet been resolved that you want to let users know you know?  Outline any issues that would impact use of your application.  Share any workarounds that are in place. }_
-
 ## Support and contact details
 
 [E-mail me](mailto:arolling@gmail.com) with any comments or concerns.
@@ -50,11 +45,11 @@ _{Are there issues that have not yet been resolved that you want to let users kn
 * Gradle
 * Spark
 * fluentlenium
-* PostgreSql 
+* PostgreSql
 * Bootstrap
 
 ### License
 
-*{Determine the license under which this application can be used.  See below for more details on licensing.}*
+Licensed under the GPL.
 
-Copyright (c) 2016 **_{List of contributors or company name}_**
+Copyright (c) 2016 **Abigail Rolling**
