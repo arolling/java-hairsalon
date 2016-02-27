@@ -1,5 +1,5 @@
 .footer {
-  font-size: 200%;
+  font-size: 170%;
   text-align: right;
   position: absolute;
   bottom: 0;
@@ -30,7 +30,7 @@ body {
   color: #D2D2D2;
 }
 
-#footerlink {
+.footerlink {
   color: #B4E9FF;
 }
 
@@ -45,6 +45,10 @@ body {
 .jumbotron {
   text-align: center;
   background-color: #34697F;
+  color: #90BACC;
+}
+
+#headerlink {
   color: #90BACC;
 }
 

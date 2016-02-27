@@ -23,6 +23,7 @@
     </form>
     <hr />
     <h3>Edit Stylist</h3>
+    <a type="button" href="/stylist/$stylist.getId()/delete" id="delete-stylist" class="btn btn-danger">Delete</a>
     <form class="form-inline" action="/stylist/$stylist.getId()/edit" method="post">
       <div class="form-group">
         <label for="editName">Change Name</label>
@@ -30,7 +31,6 @@
       </div>
       <button type="submit" class="btn btn-default" id="edit">Edit</button>
     </form>
-    <a type="button" href="/stylist/$stylist.getId()/delete" id="delete-stylist" class="btn btn-danger">Delete</a>
   </div>
   <div class="col-md-4">
     <h2>Manage Clients</h2>

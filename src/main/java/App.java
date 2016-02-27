@@ -32,6 +32,32 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/clientindex", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+
+
+      model.put("allClients", Client.all());
+      model.put("allStylists", Stylist.all());
+      model.put("template", "templates/clientindex.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/clientindex", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.queryParams("edit-stylist"));
+      Stylist thisStylist = Stylist.find(id);
+      String newFirst = request.queryParams("new-client-first");
+      String newLast = request.queryParams("new-client-last");
+      Client newClient = new Client(newFirst, newLast, thisStylist.getId());
+      newClient.save();
+
+
+      model.put("allClients", Client.all());
+      model.put("allStylists", Stylist.all());
+      model.put("template", "templates/clientindex.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
     get("/stylist/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       int id = Integer.parseInt(request.params("id"));
