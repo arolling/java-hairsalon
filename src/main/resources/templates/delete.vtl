@@ -37,7 +37,7 @@
   <h3>Clients Reassigned:</h3>
   <dl>
     #foreach ($client in $fixedClients)
-      <dt><a href="/client/$client.getId()" class="list-group-item">$client.getFirst() $client.getLast()</a></dt>
+      <dt><a href="/client/$client.getId()">$client.getFirst() $client.getLast()</a></dt>
       <dd>$client.getStylistName()</dd>
     #end
   </dl>

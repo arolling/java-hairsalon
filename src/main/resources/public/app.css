@@ -3,6 +3,53 @@
   text-align: right;
   position: absolute;
   bottom: 0;
-  background-color: #f5f5f5;
+  background-color: #5A747F;
   width: 100%;
+  color: #B4E9FF;
+  height: 100px;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 100px;
+}
+
+.well {
+  background-color: #90BACC;
+}
+
+.well a {
+  color: #234757;
+}
+
+.text-muted {
+  color: #D2D2D2;
+}
+
+#footerlink {
+  color: #B4E9FF;
+}
+
+.list-group-item {
+  font-size: 16px;
+}
+
+.col-sm-8 {
+  padding-right: 150px;
+}
+
+.jumbotron {
+  text-align: center;
+  background-color: #34697F;
+  color: #90BACC;
+}
+
+.btn-default {
+  color: #234757;
+  border-color: #34697F;
+  background-color: #90BACC;
 }
